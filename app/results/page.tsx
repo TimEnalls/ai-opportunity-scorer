@@ -13,9 +13,9 @@ import {
 const WEAK_NOTES: Record<string, string> = {
   "Unfair Advantage":
     "Little here is uniquely yours, so competitors with similar resources could replicate your edge quickly.",
-  "Market Pull":
+  "Market Demand":
     "Demand signals are soft, so you may have to push the product onto customers rather than being pulled by them.",
-  Defensibility:
+  "Hard to Copy":
     "There is little stopping a fast follower from copying this once it works, so early traction may not become a durable moat.",
   "Time to Revenue":
     "The path to the first paying customer looks long, which raises the capital and conviction needed to reach it.",

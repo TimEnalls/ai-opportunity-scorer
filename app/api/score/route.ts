@@ -17,24 +17,24 @@ Score the idea on four axes, each 0–100:
 
 - UNFAIR ADVANTAGE: Does THIS person have an edge most others attempting this idea would not? Score against their stated background, not against an idealized founder. Generic ambition is not an advantage. Specific, rare, and relevant experience is.
 
-- MARKET PULL: Is there evidence people actively want this and would pay, or is the demand assumed? Reward signals of real pull. Penalize "people will obviously want this."
+- MARKET DEMAND: Is there evidence people actively want this and would pay, or is the demand assumed? Reward signals of real pull. Penalize "people will obviously want this."
 
-- DEFENSIBILITY: Once this is proven to work, how easily can a fast follower copy it? Distribution, proprietary data, switching costs, and network effects raise this. A clever idea with no moat scores low here, and that is common and correct.
+- HARD TO COPY: Once this is proven to work, how easily can a fast follower copy it? Distribution, proprietary data, switching costs, and network effects raise this. A clever idea with no moat scores low here, and that is common and correct.
 
 - TIME TO REVENUE: How quickly can this realistically reach a first paying customer? Reward short, concrete paths. Penalize anything that needs scale, a platform, or a long build before the first dollar.
 
 SCORING DISCIPLINE — read this twice:
 - Score honestly and use the full range. A genuinely strong idea from a well-matched founder should score in the 80s. A weak idea should score in the 20s and 30s. Do not cluster everything in the 50s and 60s. A tool that scores everything the same is worthless.
 - The score reflects reality. The advice is where you are helpful. NEVER raise a score to make your advice feel more achievable. An honest 38 with a clear next move is the product. A flattering 68 is failure.
-- It is correct and expected for most early ideas to be weak on at least one axis, usually defensibility or market pull. Say so plainly.
+- It is correct and expected for most early ideas to be weak on at least one axis, usually hard to copy or market demand. Say so plainly.
 - If the idea is genuinely strong, say that plainly too. Do not hedge a good idea into mediocrity out of caution.
 
 OUTPUT:
 Return ONLY valid JSON, no preamble, in exactly this shape:
 {
   "unfair_advantage": <integer 0-100>,
-  "market_pull": <integer 0-100>,
-  "defensibility": <integer 0-100>,
+  "market_demand": <integer 0-100>,
+  "hard_to_copy": <integer 0-100>,
   "time_to_revenue": <integer 0-100>,
   "overall_read": "<2-4 sentences: the honest headline, then the single most important move this person should make next. Plain, declarative sentences. No em dashes. No hedging language like 'it could be argued' or 'you might consider.' State it.>"
 }
@@ -46,8 +46,8 @@ const client = new Anthropic(); // reads ANTHROPIC_API_KEY from the environment
 // Shape the model returns (see SYSTEM_PROMPT): flat, snake_cased scores + read.
 type ModelScore = {
   unfair_advantage: number;
-  market_pull: number;
-  defensibility: number;
+  market_demand: number;
+  hard_to_copy: number;
   time_to_revenue: number;
   overall_read: string;
 };
@@ -57,8 +57,8 @@ type ModelScore = {
 // axes appear on the page.
 const AXES = [
   { key: "unfair_advantage", label: "Unfair Advantage" },
-  { key: "market_pull", label: "Market Pull" },
-  { key: "defensibility", label: "Defensibility" },
+  { key: "market_demand", label: "Market Demand" },
+  { key: "hard_to_copy", label: "Hard to Copy" },
   { key: "time_to_revenue", label: "Time to Revenue" },
 ] as const;
 
